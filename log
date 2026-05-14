@@ -67,3 +67,21 @@ Thu May 14 08:25:20 PM UTC 2026:
  1 file changed, 1 insertion(+), 1 deletion(-)
  tests:  0|0
 0599730
+Thu May 14 08:35:47 PM UTC 2026: 
+ graph.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+Compilation failed
+In file included from test.c:5:
+graph.c: In function ‘addNode’:
+graph.c:42:30: error: implicit declaration of function ‘searchMap’ [-Wimplicit-function-declaration]
+   42 |     List* existing = (List*) searchMap(g->adjacencyMap, (void*)label);
+      |                              ^~~~~~~~~
+graph.c:42:22: error: cast to pointer from integer of different size [-Werror=int-to-pointer-cast]
+   42 |     List* existing = (List*) searchMap(g->adjacencyMap, (void*)label);
+      |                      ^
+graph.c:49:22: error: implicit declaration of function ‘createList’ [-Wimplicit-function-declaration]
+   49 |     List * newList = createList();
+      |                      ^~~~~~~~~~
+graph.c:49:22: error: initialization of ‘List *’ from ‘int’ makes pointer from integer without a cast [-Wint-conversion]
+cc1: all warnings being treated as errors
+ceed6b6
