@@ -56,6 +56,28 @@ void addNode(Graph* g, const char* label) {
 
 void addEdge(Graph* g, const char* src, const char* dest, int weight) {
     if (!g || !src || !dest) return;
+    // Creamos una copia del label destino para evitar problemas de memoria
+    char* destCopy = strdup(dest);
+    if (!destCopy) return;
+    // Creamos una nueva arista
+    Edge* newEdge = (Edge*) malloc(sizeof(Edge));
+    if (!newEdge) {
+        free(destCopy);
+        return;
+    }
+    newEdge->target = destCopy;
+    newEdge->weight = weight;
+    // Buscamos la lista de aristas del nodo origen
+    MapPair* pair = map_search(g->adjacencyMap, (void*)src);
+    if (pair == NULL) {
+        free(newEdge->target);
+        free(newEdge);
+        return;
+    }
+    List* edgesList = (List*)pair->value;
+    list_pushBack(edgesList, newEdge);
+
+    
 
 }
 
