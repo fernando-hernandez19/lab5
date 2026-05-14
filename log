@@ -20,3 +20,15 @@ graph.c:33:25: error: assignment to ‘Map *’ from ‘int’ makes pointer fro
    33 |     graph->adjacencyMap = createMap(is_equal_string);
       |                         ^
 0c4c2af
+Thu May 14 08:20:55 PM UTC 2026: 
+Compilation failed
+In file included from test.c:5:
+graph.c: In function ‘createGraph’:
+graph.c:33:27: error: implicit declaration of function ‘createMap’; did you mean ‘createGraph’? [-Wimplicit-function-declaration]
+   33 |     graph->adjacencyMap = createMap(is_equal_string);
+      |                           ^~~~~~~~~
+      |                           createGraph
+graph.c:33:25: error: assignment to ‘Map *’ from ‘int’ makes pointer from integer without a cast [-Wint-conversion]
+   33 |     graph->adjacencyMap = createMap(is_equal_string);
+      |                         ^
+891eff7
