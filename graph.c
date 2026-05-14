@@ -38,20 +38,20 @@ Graph* createGraph() {
 
 void addNode(Graph* g, const char* label) {
     if (!g || !label) return;
-    List* existing = (List*) searchMap(g->adjacencyMap, (void*)label);
-    if(existing != NULL){
+    // Si el nodo ya existe, no hacemos nada
+    if (map_search(g->adjacencyMap, (void*)label) != NULL) return;
+    // Creamos una copia del label para evitar problemas de memoria
+    char* labelCopy = strdup(label);
+    if (!labelCopy) return;
+    // Creamos una nueva lista para las aristas
+    List* edgesList = list_create();
+    if (!edgesList) {
+        free(labelCopy);
         return;
     }
-    char* copy_label = strdup(label);
-    if(copy_label == NULL) return;
-
-    List * newList = createList();
-    if(newList == NULL){
-        free(copy_label);
-        return;
-    }
-    insertMap(g->adjacencyMap, copy_label, newList);
+    map_insert(g->adjacencyMap, labelCopy, edgesList);
     
+
 }
 
 void addEdge(Graph* g, const char* src, const char* dest, int weight) {
